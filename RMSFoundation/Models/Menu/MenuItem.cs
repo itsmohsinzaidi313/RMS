@@ -1,0 +1,86 @@
+﻿using RMSFoundation.Models.Discounts;
+using BranchPOS.POSSettings;
+using RMSEnumerations;
+using System;
+using System.Collections.Generic;
+
+namespace RMSFoundation.Models.Menu
+{
+    public abstract class MenuItem
+    {
+        public string Name { get; set; } = string.Empty;
+        public Category Category { get; set; } = new Category();
+        public double UnitPrice { get; set; } = 0;
+        public double Quantity { get; set; }
+        public Tax Tax { get; set; } = new Tax { Percentage = 0 };
+        public ItemDiscount Discount { get; set; } = new ItemDiscount { Amount = 0, AmountUnit = Units.Percentage };
+        public double TotalDiscount
+        {
+            get
+            {
+                if (Settings.TaxBeforeDiscount)
+                {
+                    return Discount.ApplyExclusive(SubTotal + TaxAmount);
+                }
+                else
+                {
+                    return Discount.ApplyExclusive(SubTotal);
+                }
+            }
+        }
+        public virtual double SubTotal
+        {
+            get
+            {
+                double addonsAmount = 0;
+                return (UnitPrice * Quantity) + addonsAmount;
+            }
+        }
+        public double TaxAmount
+        {
+            get
+            {
+                return Tax.ApplyExclusive(SubTotal);
+            }
+        }
+        public double NetAmount
+        {
+            get
+            {
+                return (SubTotal + TaxAmount) - TotalDiscount;
+            }
+        }
+        public override bool Equals(object? obj)
+        {
+            return obj is MenuItem item &&
+                   Name == item.Name &&
+                   UnitPrice == item.UnitPrice &&
+                   Quantity == item.Quantity &&
+                   EqualityComparer<Tax>.Default.Equals(Tax, item.Tax) &&
+                   EqualityComparer<ItemDiscount>.Default.Equals(Discount, item.Discount) &&
+                   TotalDiscount == item.TotalDiscount &&
+                   SubTotal == item.SubTotal &&
+                   TaxAmount == item.TaxAmount &&
+                   NetAmount == item.NetAmount;
+        }
+        public override int GetHashCode()
+        {
+            HashCode hash = new HashCode();
+            hash.Add(Name);
+            hash.Add(UnitPrice);
+            hash.Add(Quantity);
+            hash.Add(Tax);
+            hash.Add(Discount);
+            hash.Add(TotalDiscount);
+            hash.Add(SubTotal);
+            hash.Add(TaxAmount);
+            hash.Add(NetAmount);
+            return hash.ToHashCode();
+        }
+
+        public override string ToString()
+        {
+            return $"MenuItem> Name: {Name}, Category: {Category.Name}, UnitPrice: {UnitPrice}, Quantity: {Quantity}";
+        }
+    }
+}

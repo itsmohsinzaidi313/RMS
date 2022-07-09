@@ -1,0 +1,15 @@
+{
+  "version": 2,
+  "dgSpecHash": "h1lyJFbxFtlUab9/i7gGAI1bYSDAAqms74SJUq4s8FViWlN7dc4DVP4c+NwzYwb6q5GNtFloR8hi3A3E999AbQ==",
+  "success": true,
+  "projectFilePath": "D:\\dotnet\\RMS\\RMSAPIService\\RMSAPIService.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\itsmo\\.nuget\\packages\\microsoft.extensions.apidescription.server\\3.0.0\\microsoft.extensions.apidescription.server.3.0.0.nupkg.sha512",
+    "C:\\Users\\itsmo\\.nuget\\packages\\microsoft.openapi\\1.2.3\\microsoft.openapi.1.2.3.nupkg.sha512",
+    "C:\\Users\\itsmo\\.nuget\\packages\\swashbuckle.aspnetcore\\5.6.3\\swashbuckle.aspnetcore.5.6.3.nupkg.sha512",
+    "C:\\Users\\itsmo\\.nuget\\packages\\swashbuckle.aspnetcore.swagger\\5.6.3\\swashbuckle.aspnetcore.swagger.5.6.3.nupkg.sha512",
+    "C:\\Users\\itsmo\\.nuget\\packages\\swashbuckle.aspnetcore.swaggergen\\5.6.3\\swashbuckle.aspnetcore.swaggergen.5.6.3.nupkg.sha512",
+    "C:\\Users\\itsmo\\.nuget\\packages\\swashbuckle.aspnetcore.swaggerui\\5.6.3\\swashbuckle.aspnetcore.swaggerui.5.6.3.nupkg.sha512"
+  ],
+  "logs": []
+}
